@@ -2,6 +2,7 @@ package guru.springframework.spring5webapp.bootstrap;
 
 import guru.springframework.spring5webapp.model.Author;
 import guru.springframework.spring5webapp.model.Book;
+import guru.springframework.spring5webapp.model.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
 import org.springframework.context.ApplicationListener;
@@ -16,6 +17,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private AuthorRepository authorRepository;
     private BookRepository bookRepository;
+    private Publisher PublisherRepository;
 
     public DevBootstrap(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;

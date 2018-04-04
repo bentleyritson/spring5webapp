@@ -1,5 +1,7 @@
 package guru.springframework.spring5webapp.model;
 
+import guru.springframework.spring5webapp.repositories.PublisherRepository;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +16,6 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
-    private String publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
@@ -27,8 +28,7 @@ public class Book {
     public Book(String title, String isbn, String publisher) {
         this.title = title;
         this.isbn = isbn;
-        this.publisher = publisher;
-    }
+        Publisher.class.getName(publisher);
 
     public Book(String title, String isbn, String publisher, Set<Author> authors) {
         this.title = title;
