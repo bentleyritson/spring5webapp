@@ -5,6 +5,7 @@ import guru.springframework.spring5webapp.model.Book;
 import guru.springframework.spring5webapp.model.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
+import guru.springframework.spring5webapp.repositories.PublisherRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -17,11 +18,13 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private AuthorRepository authorRepository;
     private BookRepository bookRepository;
-    private Publisher PublisherRepository;
+    private PublisherRepository publisherRepository;
 
-    public DevBootstrap(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public DevBootstrap(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
+
     }
 
     @Override
@@ -39,7 +42,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
         authorRepository.save(eric);
         bookRepository.save(ddd);
-
+        publisherRepository.save(ben);
 
         //Rod
         Author rod = new Author("Rod", "Johnson");
