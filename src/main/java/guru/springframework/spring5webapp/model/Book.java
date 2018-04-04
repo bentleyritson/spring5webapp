@@ -74,9 +74,9 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        Book book = (Book) o;
 
-        return id != null ? id.equals(author.id) : author.id == null;
+        return id != null ? id.equals(book.id) : book.id == null;
     }
 
 
@@ -92,7 +92,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", publisher='" + publisher + '\'' +
+                ", publisher='" + + '\'' +
                 ", authors=" + authors +
                 '}';
     }
