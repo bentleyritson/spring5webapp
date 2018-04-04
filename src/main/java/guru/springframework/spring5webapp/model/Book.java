@@ -1,7 +1,5 @@
 package guru.springframework.spring5webapp.model;
 
-import guru.springframework.spring5webapp.repositories.PublisherRepository;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +15,9 @@ public class Book {
     private String title;
     private String isbn;
 
+    @OneToOne
+    private Publisher publisher;
+
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
     inverseJoinColumns = @JoinColumn(name = "author_id"))
@@ -25,14 +26,16 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String isbn) {
+    public Book(String title, String isbn, Publisher publisher) {
         this.title = title;
         this.isbn = isbn;
+        this.publisher = publisher;
     }
 
-    public Book(String title, String isbn,  Set<Author> authors) {
+    public Book(String title, String isbn, Publisher publisher, Set<Author> authors) {
         this.title = title;
         this.isbn = isbn;
+        this.publisher = publisher;
         this.authors = authors;
     }
 
@@ -60,6 +63,13 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
 
     public Set<Author> getAuthors() {
         return authors;
@@ -79,8 +89,6 @@ public class Book {
         return id != null ? id.equals(book.id) : book.id == null;
     }
 
-
-
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
@@ -92,7 +100,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", publisher='" + + '\'' +
+                ", publisher='" + publisher + '\'' +
                 ", authors=" + authors +
                 '}';
     }
